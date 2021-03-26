@@ -1,19 +1,22 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
-import useWindowSize from "./useWindowSize";
+import ScanqrCode from "./Component/ScanqrCode";
+import Makeqrcode from "./Component/Makeqrcode";
 function App() {
-  const { width } = useWindowSize();
-  // console.log(height);
   return (
-    <div>
-      {width < 500 ? (
-        <h1 style={{ backgroundColor: "red" }}>ini ukuran handphone</h1>
-      ) : width < 800 ? (
-        <h1 style={{ backgroundColor: "yellow" }}>ini ukuran Tablet</h1>
-      ) : (
-        <h1 style={{ backgroundColor: "green" }}>Ini ukuran Monitor</h1>
-      )}
-    </div>
+    <Router>
+      <div className="app">
+        <Switch>
+          <Route path="/makeqrcode">
+            <Makeqrcode />
+          </Route>
+          <Route path="/">
+            <ScanqrCode />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 export default App;
